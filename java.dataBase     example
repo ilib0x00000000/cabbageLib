@@ -1,0 +1,61 @@
+/*  
+    .--..--..--..--..--..--.
+    .' \  (`._   (_)     _   \
+  .'    |  '._)         (_)  |
+  \ _.')\      .----..---.   /
+  |(_.'  |    /    .-\-.  \  |
+  \     0|    |   ( O| O) | o|
+   |  _  |  .--.____.'._.-.  |
+   \ (_) | o         -` .-`  |
+    |    \   |`-._ _ _ _ _\ /
+    \    |   |  `. |_||_|   |   @ilib0x00000000
+    | o  |    \_      \     |     -.   .-.
+    |.-.  \     `--..-'   O |     `.`-' .'
+  _.'  .' |     `-.-'      /-.__   ' .-'
+.' `-.` '.|='=.='=.='=.='=|._/_ `-'.'
+`-._  `.  |________/\_____|    `-.'
+   .'   ).| '=' '='\/ '=' |
+   `._.`  '---------------'
+           //___\   //___\
+             ||       ||
+             ||_.-.   ||_.-.
+            (_.--__) (_.--__)
+*/
+import java.sql.ResultSet;
+
+
+/***************************************一道华丽滴分界线~~~*******************************************/
+public class dataBaseserver 
+{
+	public static void main(String[] args) 
+	{
+		DataBase  mydatabase = new DataBase("dataBaseSource");
+		ResultSet  rs;
+		
+
+		String  element1;
+		String  element2;
+		
+		try 
+		{
+			mydatabase.connectAccess();
+			
+			rs = mydatabase.doSql("SELECT  column1,column2 FROM  TABELNAME");
+                                   //  假设这里的column1和column2是表里的字段，且是String类型的。
+			
+			while(rs.next())
+			{
+				element1 = rs.getString("column1");
+				element2 = rs.getString("column2");
+				
+				System.out.println(element1 + "       " + element2);
+			}
+			
+			mydatabase.disconnect();
+		} catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
+}
